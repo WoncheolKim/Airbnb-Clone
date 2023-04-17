@@ -22,6 +22,7 @@ const Navbar = () => {
                         "
                     >
                         <Logo />
+                        
                     </div>
                 </Container>
             </div>
