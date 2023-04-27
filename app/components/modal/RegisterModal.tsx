@@ -119,7 +119,7 @@ const RegisterModal= () => {
               cursor-pointer 
               hover:underline
             "
-            > 
+            >
             Log in
             </div>
           </div>
@@ -141,5 +141,6 @@ const RegisterModal= () => {
   );
 }
 
+/* Testing */
 
 export default RegisterModal;
