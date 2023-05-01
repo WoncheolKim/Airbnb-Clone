@@ -40,7 +40,7 @@ const RegisterModal= () => {
       registerModal.onClose();
     })
     .catch((error) => {
-        console.log(error);
+        console.log('Something went wrong');
     })
     .finally(() => {
       setIsLoading(false);
