@@ -7,7 +7,6 @@ import RegisterModal from "./components/modal/RegisterModal";
 import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/modal/LoginModal";
 
-
 export const metadata = {
   title: 'Airbnb',
   description: 'Airbnb clone',

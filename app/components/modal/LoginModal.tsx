@@ -1,28 +1,29 @@
 'use client';
 
-import axios from "axios";
-import { AiFillGithub } from "react-icons/ai";
-import { signIn } from "next-auth/react";
-import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
+import { signIn } from 'next-auth/react';
 import { 
   FieldValues, 
-  SubmitHandler,
+  SubmitHandler, 
   useForm
 } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
+import { AiFillGithub } from "react-icons/ai";
+import { useRouter } from "next/navigation";
 
-import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 import Modal from "./Modal";
 import Input from "../inputs/Input";
 import Heading from "../Heading";
 import Button from "../Button";
 
-const LoginModal= () => {
-  const registerModal = useRegisterModal();
+const LoginModal = () => {
+  const router = useRouter();
   const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const { 
@@ -33,27 +34,31 @@ const LoginModal= () => {
     },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: '',
       email: '',
-      password: ''
+      password: '',
     },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
-    axios.post('/api/register', data)
-    .then(() => {
-      toast.success('Registered!');
-      registerModal.onClose();
-      loginModal.onOpen();
+    signIn('credentials', { 
+      ...data, 
+      redirect: false,
     })
-    .catch((error) => {
-      toast.error(error);
-    })
-    .finally(() => {
+    .then((callback) => {
       setIsLoading(false);
-    })
+
+      if (callback?.ok) {
+        toast.success('Logged in');
+        router.refresh();
+        loginModal.onClose();
+      }
+      
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    });
   }
 
   const onToggle = useCallback(() => {
