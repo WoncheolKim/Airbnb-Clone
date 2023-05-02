@@ -20,7 +20,7 @@ import Input from "../inputs/Input";
 import Heading from "../Heading";
 import Button from "../Button";
 
-const RegisterModal= () => {
+const LoginModal= () => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
@@ -146,4 +146,4 @@ const RegisterModal= () => {
   );
 }
 
-export default RegisterModal;
+export default LoginModal;
