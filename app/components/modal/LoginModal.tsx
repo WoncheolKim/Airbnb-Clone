@@ -35,11 +35,12 @@ const LoginModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       email: '',
-      password: '',
+      password: ''
     },
   });
-
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  
+  const onSubmit: SubmitHandler<FieldValues> = 
+  (data) => {
     setIsLoading(true);
 
     signIn('credentials', { 
@@ -62,9 +63,9 @@ const LoginModal = () => {
   }
 
   const onToggle = useCallback(() => {
-    registerModal.onClose();
-    loginModal.onOpen();
-  }, [registerModal, loginModal])
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal])
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -76,7 +77,7 @@ const LoginModal = () => {
         id="email"
         label="Email"
         disabled={isLoading}
-        register={register}
+        register={register}  
         errors={errors}
         required
       />
@@ -99,7 +100,7 @@ const LoginModal = () => {
         outline 
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => signIn('google')} 
+        onClick={() => signIn('google')}
       />
       <Button 
         outline 
@@ -107,15 +108,9 @@ const LoginModal = () => {
         icon={AiFillGithub}
         onClick={() => signIn('github')}
       />
-      <div 
-        className="
-          text-neutral-500 
-          text-center 
-          mt-4 
-          font-light
-        "
-      >
-        <p>Already have an account?
+      <div className="
+      text-neutral-500 text-center mt-4 font-light">
+        <p>First time using Airbnb?
           <span 
             onClick={onToggle} 
             className="
@@ -123,7 +118,7 @@ const LoginModal = () => {
               cursor-pointer 
               hover:underline
             "
-            > Log in</span>
+            > Create an account</span>
         </p>
       </div>
     </div>
