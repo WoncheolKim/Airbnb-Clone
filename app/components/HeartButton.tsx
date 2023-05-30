@@ -2,7 +2,6 @@
 
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
-import useFavorite
 import { SafeUser } from "../types"
 
 import ClientOnly from "./ClientOnly";
